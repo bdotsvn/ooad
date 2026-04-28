@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Appointment Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <header>
+            <h1>My Calendar</h1>
+            <p id="current-date"></p>
+        </header>
+
+        <main>
+            <div class="calendar-wrapper">
+                <div class="calendar-header">
+                    <button id="prev-btn">&lt;</button>
+                    <h2 id="month-year">Tháng 4, 2026</h2>
+                    <button id="next-btn">&gt;</button>
+                </div>
+                <div class="calendar-grid" id="calendar-grid">
+                    <!-- Days of week -->
+                    <div class="day-label">CN</div>
+                    <div class="day-label">T2</div>
+                    <div class="day-label">T3</div>
+                    <div class="day-label">T4</div>
+                    <div class="day-label">T5</div>
+                    <div class="day-label">T6</div>
+                    <div class="day-label">T7</div>
+                    <!-- Calendar days will be injected here -->
+                </div>
+            </div>
+
+            <div class="appointments-list-container">
+                <h3>Danh sách Appointments</h3>
+                <div id="appointments-list" class="glass-list">
+                    <p class="empty-msg">Chưa có lịch hẹn nào.</p>
+                </div>
+            </div>
+        </main>
+
+        <button id="add-btn" class="fab-btn">+</button>
+    </div>
+
+    <!-- Modal Form -->
+    <div id="appointment-modal" class="modal">
+        <div class="modal-content glass-effect">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-title">Thêm Appointment Mới</h2>
+            <form id="appointment-form">
+                <div class="form-group">
+                    <label for="title">Tên cuộc hẹn</label>
+                    <input type="text" id="title" placeholder="VD: Team Standup" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Địa điểm</label>
+                    <input type="text" id="location" placeholder="VD: Phòng họp số 1">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="start-time">Giờ bắt đầu</label>
+                        <input type="datetime-local" id="start-time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="end-time">Giờ kết thúc</label>
+                        <input type="datetime-local" id="end-time" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reminder">Nhắc nhở</label>
+                    <select id="reminder">
+                        <option value="none">Không có</option>
+                        <option value="5min">Trước 5 phút</option>
+                        <option value="15min">Trước 15 phút</option>
+                        <option value="1h">Trước 1 giờ</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="primary-btn">Lưu cuộc hẹn</button>
+                    <button type="button" class="secondary-btn cancel-btn">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Conflict Warning Modal -->
+    <div id="conflict-modal" class="modal alert-modal">
+        <div class="modal-content glass-effect alert-content">
+            <div class="alert-icon">⚠️</div>
+            <h2>Trùng lịch rồi anh ơi!</h2>
+            <p id="conflict-msg">Đã có một cuộc hẹn khác vào thời gian này.</p>
+            <div class="form-actions">
+                <button id="replace-btn" class="danger-btn">Thay thế lịch cũ</button>
+                <button id="choose-time-btn" class="primary-btn">Chọn thời gian khác</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Group Suggest Modal -->
+    <div id="group-modal" class="modal alert-modal">
+        <div class="modal-content glass-effect alert-content">
+            <div class="alert-icon">👥</div>
+            <h2>Tham gia Group Meeting?</h2>
+            <p id="group-msg">Hình như anh muốn tham gia cuộc họp nhóm đã có sẵn?</p>
+            <div class="form-actions">
+                <button id="join-btn" class="success-btn">Vâng, cho em tham gia!</button>
+                <button id="keep-own-btn" class="secondary-btn">Không, tạo cái mới</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="models.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
