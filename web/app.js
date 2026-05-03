@@ -364,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pendingConflicts = conflictRes.ConflictingAppointments;
             const conflictNames = pendingConflicts.map(c => `"${c.Name}"`).join(', ');
             document.getElementById('conflict-msg').innerText =
-                `Lịch "${dto.Name}" bị trùng với ${conflictNames} rồi ạ!`;
+                `Cuộc hẹn "${dto.Name}" bị trùng thời gian với: ${conflictNames}.`;
             // step 12: ShowAsync(ConflictingAppointments, SuggestedTimes)
             conflictModal.style.display = 'flex';
             modal.style.display = 'none';
@@ -418,7 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
         groupModal.style.display = 'none';
         if (result.Success) {
             // step 42: Thông báo "Đã thêm vào cuộc họp nhóm"
-            showSnackbar('✅ Đã thêm anh vào Group Meeting thành công!');
+            showSnackbar('✅ Đã tham gia cuộc họp nhóm thành công.');
         }
         pendingGroupId = null;
         renderAppointments();
@@ -445,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pendingDto = dto;
             pendingGroupId = matchResult.GroupId;
             document.getElementById('group-msg').innerText =
-                `Có vẻ anh muốn tham gia Group Meeting "${matchResult.MeetingName}" đã có sẵn. Anh có muốn join không?`;
+                `Hệ thống phát hiện cuộc họp nhóm "${matchResult.MeetingName}" có thông tin tương tự. Bạn có muốn tham gia không?`;
             // step 30: ShowAsync()
             groupModal.style.display = 'flex';
             return;
@@ -462,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
         closeAllModals();
         if (result.Success) {
             // step 45: Thông báo "Tạo lịch hẹn mới thành công"
-            showSnackbar('✅ Đã tạo lịch hẹn mới thành công!');
+            showSnackbar('✅ Đã tạo lịch hẹn mới thành công.');
             renderCalendar();
             renderAppointments();
         }
